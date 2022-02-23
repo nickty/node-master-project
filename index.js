@@ -64,6 +64,7 @@ const server = http.createServer((req, res) => {
       const paylaodString = JSON.stringify(payload);
 
       // return the response
+      res.setHeader("Content-Type", "application/json");
       res.writeHead(statusCode);
       res.end(paylaodString);
 
@@ -94,5 +95,5 @@ hanlders.notFound = (data, cb) => {
 
 // Define a request router
 const router = {
-  sample: hanlders.sample,
+  "/sample": hanlders.sample,
 };
