@@ -23,12 +23,16 @@ const server = http.createServer((req, res) => {
   //   get the http method
   const method = req.method.toLowerCase();
 
+  //   get the header as an object
+  const headers = req.headers;
+
   // send the response
   res.end('Bismillah');
 
   // log the request path
   console.log('path is: ', trimmedPath + ' with', method + ' method');
   console.log('query string', queryString);
+  console.log('headers are ', headers);
 });
 
 // start the server with a port
