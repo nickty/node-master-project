@@ -17,11 +17,14 @@ const server = http.createServer((req, res) => {
   const path = parsedUrl.pathname;
   const trimmedPath = path.replace(/^\/+"\/+$/g, '');
 
+  //   get the http method
+  const method = req.method.toLowerCase();
+
   // send the response
   res.end('Bismillah');
 
   // log the request path
-  console.log('path is: ', trimmedPath);
+  console.log('path is: ', trimmedPath + ' with', method + ' method');
 });
 
 // start the server with a port
