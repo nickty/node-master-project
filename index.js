@@ -7,6 +7,8 @@ const http = require('http');
 
 const url = require('url');
 
+const StringDecoder = require('string_decoder').StringDecoder;
+
 // the server should response all the request with a string
 
 const server = http.createServer((req, res) => {
@@ -26,13 +28,25 @@ const server = http.createServer((req, res) => {
   //   get the header as an object
   const headers = req.headers;
 
-  // send the response
-  res.end('Bismillah');
+  //   get the payload if there is any
+  const decoder = new StringDecoder('utf-8');
+  let buffer = '';
+  req.on('data', (data) => {
+    buffer += decoder.write(data);
+  });
+  req.on('end', () => {
+    buffer += decoder.end();
 
-  // log the request path
-  console.log('path is: ', trimmedPath + ' with', method + ' method');
-  console.log('query string', queryString);
-  console.log('headers are ', headers);
+    //   do the rest
+    // send the response
+    res.end('Bismillah');
+
+    // log the request path
+    console.log('path is: ', trimmedPath + ' with', method + ' method');
+    console.log('query string', queryString);
+    console.log('headers are ', headers);
+    console.log('payload is ', buffer);
+  });
 });
 
 // start the server with a port
