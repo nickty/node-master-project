@@ -3,15 +3,15 @@
 // Primary file to the api
 
 // Dependency
-const http = require("http");
+const http = require('http');
 
-const url = require("url");
+const url = require('url');
 
-const StringDecoder = require("string_decoder").StringDecoder;
+const StringDecoder = require('string_decoder').StringDecoder;
 
 // the server should response all the request with a string
 
-const config = require("./config");
+const config = require('./config');
 
 const server = http.createServer((req, res) => {
   //get the url and parse it
@@ -19,7 +19,7 @@ const server = http.createServer((req, res) => {
 
   // get the path from url, untrimmed path
   const path = parsedUrl.pathname;
-  const trimmedPath = path.replace(/^\/+\/+$/g, "");
+  const trimmedPath = path.replace(/^\/+\/+$/g, '');
 
   console.log(trimmedPath);
 
@@ -33,17 +33,17 @@ const server = http.createServer((req, res) => {
   const headers = req.headers;
 
   //   get the payload if there is any
-  const decoder = new StringDecoder("utf-8");
-  let buffer = "";
-  req.on("data", (data) => {
+  const decoder = new StringDecoder('utf-8');
+  let buffer = '';
+  req.on('data', (data) => {
     buffer += decoder.write(data);
   });
-  req.on("end", () => {
+  req.on('end', () => {
     buffer += decoder.end();
 
     // choose the hanldelr this request should go to, if one is fot foudn use the notfoud handlers
     const chosenHandler =
-      typeof router[trimmedPath] !== "undefined"
+      typeof router[trimmedPath] !== 'undefined'
         ? router[trimmedPath]
         : hanlders.notFound;
     // construct data object to send to the handlers
@@ -58,20 +58,20 @@ const server = http.createServer((req, res) => {
     // Route the requet to the handlelr speifind in the router
     chosenHandler(data, (statusCode, payload) => {
       // use the statud code called back by the handlers or defual to 200
-      statusCode = typeof statusCode == "number" ? statusCode : 200;
+      statusCode = typeof statusCode == 'number' ? statusCode : 200;
       // use the paylaod called back by the handler or defaul tot and exty object
-      payload = typeof payload == "object" ? payload : {};
+      payload = typeof payload == 'object' ? payload : {};
 
       // cnvert the payload to a string
       const paylaodString = JSON.stringify(payload);
 
       // return the response
-      res.setHeader("Content-Type", "application/json");
+      res.setHeader('Content-Type', 'application/json');
       res.writeHead(statusCode);
       res.end(paylaodString);
 
       // log the request path
-      console.log("returning", statusCode, paylaodString);
+      console.log('returning', statusCode, paylaodString);
     });
   });
 });
@@ -84,18 +84,17 @@ server.listen(config.port, () => {
 //defind handlers
 const hanlders = {};
 
-// sampel handlers
-hanlders.sample = (data, cb) => {
-  // call a http status code and a payload object
-  cb(406, { name: "smaple handlers" });
+// ping handlers
+hanlders.ping = (data, cb) => {
+  cb(200);
 };
 
 // not found handler
 hanlders.notFound = (data, cb) => {
-  cb(404);
+  cb(200);
 };
 
 // Define a request router
 const router = {
-  "/sample": hanlders.sample,
+  '/ping': hanlders.sample,
 };
