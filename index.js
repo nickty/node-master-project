@@ -11,6 +11,8 @@ const StringDecoder = require("string_decoder").StringDecoder;
 
 // the server should response all the request with a string
 
+const config = require("./config");
+
 const server = http.createServer((req, res) => {
   //get the url and parse it
   const parsedUrl = url.parse(req.url, true);
@@ -75,8 +77,8 @@ const server = http.createServer((req, res) => {
 });
 
 // start the server with a port
-server.listen(3000, () => {
-  console.log("server is started");
+server.listen(config.port, () => {
+  console.log(`${config.port} now the port and the env is : ${config.envName}`);
 });
 
 //defind handlers
