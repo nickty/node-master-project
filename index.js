@@ -85,7 +85,7 @@ server.listen(config.port, () => {
 
 // Define a request router
 const router = {
-  "/ping": hanlders.sample,
+  "/ping": hanlders.ping,
   "/users": hanlders.users,
   "/tokens": hanlders.tokens,
 };
