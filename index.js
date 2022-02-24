@@ -87,4 +87,5 @@ server.listen(config.port, () => {
 const router = {
   "/ping": hanlders.sample,
   "/users": hanlders.users,
+  "/tokens": hanlders.tokens,
 };
