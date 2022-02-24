@@ -14,8 +14,11 @@ const _data = require('./lib/data');
 // _data.create('test', 'nseswsFile', { foo: 'bar' }, (err) => {
 //   console.log('this is an error', err);
 // });
-_data.read('test', 'nseswsFile', (err, data) => {
-  console.log('this is an error', err, 'data is', data);
+// _data.read('test', 'nseswsFile', (err, data) => {
+//   console.log('this is an error', err, 'data is', data);
+// });
+_data.update('test', 'neswsFile', { this: 'bus' }, (err) => {
+  console.log('this is an error', err);
 });
 
 // the server should response all the request with a string
