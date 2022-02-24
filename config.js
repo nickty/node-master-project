@@ -9,12 +9,14 @@ const environments = {};
 environments.staging = {
   port: 3000,
   envName: "staging",
+  hashingSecret: "nimizan",
 };
 
 // producttion environment
 environments.production = {
   port: 5000,
   envName: "production",
+  hashingSecret: "nimizanslos",
 };
 
 // Determine which environment was passed as a commlan line artument
