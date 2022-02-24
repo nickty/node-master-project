@@ -9,6 +9,12 @@ const url = require('url');
 
 const StringDecoder = require('string_decoder').StringDecoder;
 
+const _data = require('./lib/data');
+
+_data.create('test', 'nseswsFile', { foo: 'bar' }, (err) => {
+  console.log('this is an error', err);
+});
+
 // the server should response all the request with a string
 
 const config = require('./config');
