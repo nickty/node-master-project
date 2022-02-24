@@ -17,7 +17,10 @@ const _data = require('./lib/data');
 // _data.read('test', 'nseswsFile', (err, data) => {
 //   console.log('this is an error', err, 'data is', data);
 // });
-_data.update('test', 'neswsFile', { this: 'bus' }, (err) => {
+// _data.update('test', 'neswsFile', { this: 'bus' }, (err) => {
+//   console.log('this is an error', err);
+// });
+_data.delete('test', 'nseswsFile', (err) => {
   console.log('this is an error', err);
 });
 
