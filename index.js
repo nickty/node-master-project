@@ -14,6 +14,11 @@ const helpers = require('./lib/helpers');
 const config = require('./config');
 const hanlders = require('./lib/handlers');
 
+// send twilio sms
+helpers.sendTwilioSms('+8801717914839', 'Bismilla', (err) => {
+  console.log('There was an error', err);
+});
+
 const server = http.createServer((req, res) => {
   //get the url and parse it
   const parsedUrl = url.parse(req.url, true);

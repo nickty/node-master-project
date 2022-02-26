@@ -13,6 +13,11 @@ environments.staging = {
   envName: 'staging',
   hashingSecret: 'nimizan',
   maxChecks: 5,
+  twilio: {
+    accountSid: 'AC5add62b75248fe31d72f6a1505c0b28d',
+    authToken: '4bb7e5c409ca425e194977d62fa4546d',
+    fromPhone: '+19036003680',
+  },
 };
 
 // producttion environment
@@ -21,6 +26,11 @@ environments.production = {
   envName: 'production',
   hashingSecret: 'nimizanslos',
   maxChecks: 5,
+  twilio: {
+    accountSid: 'AC5add62b75248fe31d72f6a1505c0b28d',
+    authToken: '4bb7e5c409ca425e194977d62fa4546d',
+    fromPhone: '19036003680',
+  },
 };
 
 // Determine which environment was passed as a commlan line artument
