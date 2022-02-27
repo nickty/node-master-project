@@ -1,7 +1,7 @@
 /** @format */
 
 const server = require('./lib/server');
-// const workers = require('./lib/workers');
+const workers = require('./lib/workers');
 
 const app = {};
 
@@ -10,7 +10,7 @@ app.init = () => {
   server.init();
 
   // start workders
-  // workers.init();
+  workers.init();
 };
 
 app.init();
